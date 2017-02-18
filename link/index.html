@@ -1,5 +1,38 @@
 <html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="index.js"></script>
+</head>
 <body>
-Hello World!
+<strong>Insert a new link to database and generate shortened link:</strong> <input id="link" type="text" size=100 value="http://xyz.com/product/">
+<br/><br/>
+<input type="submit" value="Insert link" onClick="insertLink()">
+<input type="submit" value="Increment random number to serial" onClick="randomSerial()">
+<br/><br/>
+<div id="shortLinkDiv" style="display:none">
+<strong>Shortened link: </strong><span id="shortLink"></span>
+</div>
+<br/>
+<hr/>
+<br/>
+<strong>Type in a shortened link:</strong> <input id="inputShortLink" type="text" size=100 placeholder="http://xyz.com/1">
+<br/><br/>
+<input type="submit" value="Get original link" onClick="getOriginalLink()">
+<br/><br/>
+<div id="originalLinkDiv" style="display:none">
+<strong>Original link: </strong><span id="originalLink"></span>
+</div>
+<br/>
+<hr/>
+<br/>
+<strong>Current Database (id: <span id="serialId"></span>):</strong>
+<div id="database">
+</div>
+<br/>
+<hr/>
+<br/>
+<strong>User generated shortened link:</strong>
+<div id="history">
+</div>
 </body>
 </html>
