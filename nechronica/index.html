@@ -29,8 +29,9 @@
         </button>
       </div>
       <div class="collapse navbar-collapse navbar-ex1-collapse">
-        <ul class="nav navbar-nav">
-          <li class="doll-creation"><a href="#"><span data-localize="MSG_NAVBAR_DOLL_CREATION">Doll Creation</span></a></li>
+        <ul class="nav navbar-nav" id="navTabs">
+          <li class="home active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><span data-localize="MSG_NAVBAR_HOME">Home</span></a></li>
+          <li class="doll-creation"><a href="#doll-creation" aria-controls="doll-creation" role="tab" data-toggle="tab"><span data-localize="MSG_NAVBAR_DOLL_CREATION">Doll Creation</span></a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span id="language-tab"></span><b class="caret"></b></a>
             <ul class="dropdown-menu">
@@ -41,7 +42,19 @@
         </ul>
       </div>
     </nav>
-	<div id="pages" class="col-md-12">
+	<!-- Tab panes -->
+	<div class="tab-content">
+		<div role="tabpanel" class="tab-pane active" id="home">
+			<div class="individual-page">
+				<div>http://www.nechronica.com/top.html</div>
+				<div>https://tlwiki.org/?title=Nechronica</div>
+			</div>
+		</div>
+		<div role="tabpanel" class="tab-pane" id="doll-creation">
+			<div class="individual-page">
+				<div data-localize="MSG_NAVBAR_DOLL_CREATION">Doll Creation</div>
+			</div>
+		</div>
 	</div>
 </div>
 

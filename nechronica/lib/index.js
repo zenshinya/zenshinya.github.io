@@ -1,11 +1,13 @@
 $(document).ready(function() {
 	initialise();
+	
+	$('#navTabs a').click(function (e) {
+		$(this).tab('show');
+	})
 });
 
 function initialise() {
     initialiseLanguageDropdown();
-	initialiseNavbar();
-	loadHomepage();
 }
 
 /**
@@ -24,21 +26,4 @@ function initialiseLanguageDropdown() {
 		$("#language-tab").html(imgHtml);
 		$("[data-localize]").localize("text/labels", { language: imgHtml.name })
 	});
-}
-
-function initialiseNavbar() {
-	$(".header").click(function() {
-		loadHomepage();
-	});
-	$(".doll-creation").click(function() {
-		loadDollCreation();
-	});
-}
-
-function loadHomepage() {
-	$("#pages").load('homepage.html');
-}
-
-function loadDollCreation() {
-	$("#pages").load('doll-creation.html');
 }
