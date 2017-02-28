@@ -1,6 +1,11 @@
 $(document).ready(function() {
-    initialiseLanguageDropdown();
+	initialise();
 });
+
+function initialise() {
+    initialiseLanguageDropdown();
+	$("#pages").load('homepage.html');
+}
 
 /**
  *

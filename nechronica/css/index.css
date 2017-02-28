@@ -6,14 +6,13 @@
 .header {
 	background-color: #eeeeee;
 	padding: 20px;
+	cursor: pointer;
 }
 
 .title {
 	font-size: 50px;
 	font-weight: bold;
 }
-
-
 
 @media only screen and (min-width: 768px) {
     .navbar .navbar-nav {
@@ -25,7 +24,6 @@
 		text-align: center;
 	}
 }
-
 
 .flag {
 	margin-right: 10px;
@@ -43,4 +41,10 @@ ul.nav {
 
 ul.nav li a{
 	border-left: 1px solid #e7e7e7;
+}
+
+.individual-page {
+	max-width: 768px;
+	margin: auto;
+	padding: 0 15px;
 }
