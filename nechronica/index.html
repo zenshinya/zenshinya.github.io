@@ -9,19 +9,38 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="lib/jquery.localize.min.js"></script>
 	<script src="lib/index.js"></script>
-	<link rel="stylesheet" href="css/flags.css">
 	<link rel="stylesheet" href="css/index.css">
 </head>
 <body>
 
-<div class="jumbotron text-center">
-	<h1 data-localize="MSG_TITLE_NECHRONICA">Nechronica</h1>
-	<div id="language-box"><dl id="dropdown" class="dropdown"></dl></div>
+<div class="header text-center">
+	<div data-localize="MSG_TITLE_SUBTITLE_PREFIX"></div>
+	<div class="title" data-localize="MSG_TITLE_NECHRONICA">Nechronica</div>
+	<div data-localize="MSG_TITLE_SUBTITLE_POSTFIX">~The Long Long Sequel~</div>
 </div>
-  
+
 <div class="container">
-	<div class="row">
-	</div>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="#"><span data-localize="MSG_NAVBAR_DOLL_CREATION">Doll Creation</span></a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span id="language-tab"></span><b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#"><img class="flag" src="image/en.png" name="en"/><span data-localize="MSG_LANGUAGE_ENGLISH">English</span></a></li>
+              <li><a href="#"><img class="flag" src="image/jp.png" name="jp"/><span data-localize="MSG_LANGUAGE_JAPANESE">Japanese</span></a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
 </div>
 
 </body>
