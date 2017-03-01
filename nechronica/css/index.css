@@ -13,14 +13,20 @@
 	font-weight: bold;
 }
 
-@media only screen and (min-width: 768px) {
+@media (min-width: 768px) {
     .navbar .navbar-nav {
-		display: inline-block;
 		float: none;
 	}
 
 	.navbar .navbar-collapse {
 		text-align: center;
+	}
+	
+	.navbar-nav>li {
+		display: inline-block;
+		float: none;
+		margin: 0;
+		vertical-align: middle;
 	}
 }
 
@@ -32,14 +38,6 @@
 	width: 100%;
 	margin: 0;
 	padding: 0;
-}
-
-ul.nav {
-	border-right: 1px solid #e7e7e7;
-}
-
-ul.nav li a{
-	border-left: 1px solid #e7e7e7;
 }
 
 .individual-page {
