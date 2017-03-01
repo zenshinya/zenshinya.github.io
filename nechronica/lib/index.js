@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	initialise();
 	
-	$('#navTabs a').click(function (e) {
+	$('#navTabs a').not(".dropdown-toggle").click(function (e) {
 		$(this).tab('show');
 	})
 });
