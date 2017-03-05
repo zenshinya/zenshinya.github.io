@@ -80,13 +80,12 @@
 }
 
 .common-dice {
-	display: flex;
-	flex-direction: row;
 	padding: 5px;
 }
 
 .dice-roll-button {
 	height: 33px;
+	float: left;
 }
 
 .dice-d10 {
@@ -100,6 +99,7 @@
 	color: blue;
 	margin-left: 5px;
 	display: none;
+	float: left;
 }
 
 .dice-display {
