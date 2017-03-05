@@ -10,6 +10,5 @@
 	"MSG_COMMON_DOLL_NAME": "Doll's Name",
 	"MSG_COMMON_PLAYER_NAME": "Player's Name",
 	"MSG_COMMON_AGE": "Age",
-	"MSG_ROLL_DICE_AGE": "Roll a d10 + 7"
-	
+	"MSG_ROLL_DICE_AGE": "d10 + 7"
 }
