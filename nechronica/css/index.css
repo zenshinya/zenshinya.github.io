@@ -46,6 +46,62 @@
     padding: 0 15px;
 }
 
+.individual-page-big {
+    max-width: 1440px;
+    margin: auto;
+    padding: 0 15px;
+}
+
+@media (min-width: 768px) {
+	.individual-section {
+		padding: 10px;
+	}
+}
+
+.individual-section {
+	padding: 10px;
+}
+
 .screen-home {
 	text-align: center;
+}
+
+.common-label {
+	text-align: left;
+	padding: 5px;
+	margin: 5px 0;
+	white-space: nowrap;
+}
+
+.common-text-bar {
+	text-align: left;
+	padding: 5px;
+	margin: 5px 0;
+}
+
+.common-dice {
+	display: flex;
+	flex-direction: row;
+	padding: 5px;
+}
+
+.dice-roll-button {
+	height: 33px;
+}
+
+.dice-d10 {
+	border: 1px solid blue;
+	border-radius: 5px;
+	width: 33px;
+	height: 33px;
+	line-height: 33px;
+	text-align: center;
+	font-weight: bold;
+	color: blue;
+	margin-left: 5px;
+	display: none;
+}
+
+.dice-display {
+	display: block;
 }

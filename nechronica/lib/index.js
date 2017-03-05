@@ -27,3 +27,22 @@ function initialiseLanguageDropdown() {
 		$("[data-localize]").localize("text/labels", { language: imgHtml.name })
 	});
 }
+
+function rollDice10(diceId, affectedField, additionalNum) {
+	startRollDice(10, diceId, affectedField, additionalNum);
+}
+
+function startRollDice(maxNum, diceId, affectedField, additionalNum) {
+	$('#' + diceId).addClass('dice-display');
+	rollingDice(maxNum, diceId, affectedField, additionalNum, 20);
+}
+
+function rollingDice(maxNum, diceId, affectedField, additionalNum, i) {
+	if(i == 0) {
+		return;
+	}
+	var randomNo = Math.floor(Math.random() * maxNum) + 1;
+	$('#' + diceId).text(randomNo);
+	$('#' + affectedField).val(randomNo + additionalNum);
+	setTimeout(function() { rollingDice(maxNum, diceId, affectedField, additionalNum, --i); }, 50);
+}

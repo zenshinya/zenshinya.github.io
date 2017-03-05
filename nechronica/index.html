@@ -51,7 +51,8 @@
       </div>
     </nav>
 	<!-- Tab panes -->
-	<div class="tab-content">
+	<div class="tab-content clearfix">
+		<!-- Home -->
 		<div role="tabpanel" class="tab-pane active" id="home">
 			<div class="screen-home individual-page">
 				<u><h3 data-localize="MSG_COMMON_REFERENCES">References</h3></u>
@@ -59,9 +60,32 @@
 				<div><a href="https://tlwiki.org/?title=Nechronica" target="_blank">https://tlwiki.org/?title=Nechronica</a></div>
 			</div>
 		</div>
+		<!-- Doll Creation -->
 		<div role="tabpanel" class="tab-pane" id="doll-creation">
-			<div class="screen-doll-creation individual-page">
-				<div data-localize="MSG_NAVBAR_DOLL_CREATION">Doll Creation</div>
+			<div class="screen-doll-creation individual-page-big">
+				<div class="col-md-offset-2 col-md-4 col-sm-6 individual-section">
+					<div class="clearfix">
+						<div class="common-label col-xs-4" data-localize="MSG_COMMON_DOLL_NAME">Doll's Name:</div>
+						<input class="common-text-bar col-xs-8" type="text" maxlength="20">
+					</div>
+					<div class="clearfix">
+						<div class="common-label col-xs-4" data-localize="MSG_COMMON_PLAYER_NAME">Player's Name:</div>
+						<input class="common-text-bar col-xs-8" type="text" maxlength="20">
+					</div>
+					<div class="clearfix">
+						<div class="common-label col-xs-4" data-localize="MSG_COMMON_AGE">Age (8-17):</div>
+						<input class="common-text-bar col-xs-2" type="number" min="8" max="17" id="age-field">
+						<div class="common-dice col-xs-6">
+							<button class="dice-roll-button" type="button" onclick="rollDice10('age-dice', 'age-field', 7)" data-localize="MSG_ROLL_DICE_AGE">
+								Roll a d10 + 7
+							</button>
+							<div class="dice-d10" id="age-dice"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-offset-2 col-md-4 col-sm-6 individual-section">
+					<span></span>
+				</div>
 			</div>
 		</div>
 	</div>

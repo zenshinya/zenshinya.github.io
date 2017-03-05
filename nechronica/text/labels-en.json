@@ -6,5 +6,10 @@
 	"MSG_LANGUAGE_JAPANESE": "Japanese",
 	"MSG_NAVBAR_HOME": "Home",
 	"MSG_NAVBAR_DOLL_CREATION": "Doll Creation",
-	"MSG_COMMON_REFERENCES": "References"
+	"MSG_COMMON_REFERENCES": "References",
+	"MSG_COMMON_DOLL_NAME": "Doll's Name",
+	"MSG_COMMON_PLAYER_NAME": "Player's Name",
+	"MSG_COMMON_AGE": "Age",
+	"MSG_ROLL_DICE_AGE": "Roll a d10 + 7"
+	
 }
