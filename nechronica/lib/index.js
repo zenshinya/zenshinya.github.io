@@ -1,9 +1,5 @@
 $(document).ready(function() {
 	initialise();
-	
-	$('#navTabs a').not(".dropdown-toggle").click(function (e) {
-		$(this).tab('show');
-	})
 });
 
 function initialise() {
