@@ -9,6 +9,6 @@
 	"MSG_COMMON_REFERENCES": "参考文献",
 	"MSG_COMMON_DOLL_NAME": "ドール名",
 	"MSG_COMMON_PLAYER_NAME": "プレイヤー名",
-	"MSG_COMMON_AGE": "享年",
-	"MSG_ROLL_DICE_AGE": "10面ダイス + 7"
+	"MSG_COMMON_AGE": "享年（８－１７）",
+	"MSG_ROLL_DICE_AGE": "１０面＋７"
 }
