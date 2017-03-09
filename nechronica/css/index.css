@@ -90,6 +90,11 @@
 	-webkit-appearance: none;
 	-webkit-border-radius: 0;
 	border-radius: 0;
+	background-color: #DDDDDD;
+}
+
+.dice-roll-button:active {
+	background-color: #CCCCCC;
 }
 
 .dice-d10 {
