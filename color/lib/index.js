@@ -9,11 +9,13 @@ var colorScheme = {
 	3: 'blue'
 };
 
+var currentSelectedColorIdx = 0;
+
+var playground = {};
+
 function initialize() {
 	var width = 20;
 	var height = 20;
-	
-	var playground = {};
 	
 	// Initialise playground
 	for (var y = 0; y < height; y++) {
@@ -70,7 +72,7 @@ function drawUI(x, y, color) {
 		$(`#${getToken(x, y)}`).css('background-color', colorScheme[color]);
 	} else {
 		getPlaygroundDom().append(
-			`<div id="${getToken(x, y)}" class="tile" style="background-color:${colorScheme[color]}; left:${x * tileWidth}px; top:${y * tileHeight}px; width:${tileWidth}px; height:${tileHeight}px;"></div>`
+			`<div id="${getToken(x, y)}" class="tile" style="background-color:${colorScheme[color]}; left:${x * tileWidth}px; top:${y * tileHeight}px; width:${tileWidth}px; height:${tileHeight}px;" onclick="onClickTile(this.id)"></div>`
 		);
 	}
 }
@@ -81,4 +83,15 @@ function getPlaygroundDom() {
 
 function getToken(x, y) {
 	return `tile-${x}-${y}`;
+}
+
+function onClickTile(id) {
+	// If different color
+	if (playground[id] != currentSelectedColorIdx) {
+		
+	}
+}
+
+function selectColor(color) {
+	currentSelectedColorIdx = color;
 }
