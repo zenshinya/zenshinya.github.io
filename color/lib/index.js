@@ -29,6 +29,7 @@ function initialize() {
 	// Create sample
 	createSample(playground);
 	drawCount();
+	$('#winText').text('');
 }
 
 function createSample(playground) {
@@ -114,8 +115,8 @@ function onClickTile(id) {
 	
 	// If different color
 	if (playground[id] != currentSelectedColorIdx) {
-		flipColorProgress(id, playground[id], currentSelectedColorIdx);
 		reduceCount();
+		flipColorProgress(id, playground[id], currentSelectedColorIdx);
 	}
 }
 
@@ -156,6 +157,8 @@ function flipColorProgress(id, originalColorIdx, colorIdx) {
 			queue.push(getToken(position.x + 1, position.y));
 		}
 	}
+	
+	checkWinCondition();
 }
 
 function isSameBlob(x, y, colorIdx, queue, alreadyAdded) {
@@ -170,4 +173,22 @@ function selectColor(color) {
 
 function resetGame() {
 	initialize();
+}
+
+function checkWinCondition() {
+	var color = playground[Object.keys(playground)[0]];
+	var isWin = true;
+	
+	Object.keys(playground).forEach(function (key) {
+		if (playground[key] != color) {
+			isWin = false;
+			return;
+		}
+	});
+	
+	if (maxCount == 0 && !isWin) {
+		$('#winText').text('Sorry you lost. Please reset!');
+	} else if (isWin) {
+		$('#winText').text('You win!');
+	}
 }
