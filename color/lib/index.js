@@ -85,10 +85,31 @@ function getToken(x, y) {
 	return `tile-${x}-${y}`;
 }
 
+function reduceToken(id) {
+	var position = id.split(/^tile-(\d{1,2})-(\d{1,2})$/);
+	return {
+		x: position[1],
+		y: position[2]
+	};
+}
+
 function onClickTile(id) {
 	// If different color
 	if (playground[id] != currentSelectedColorIdx) {
+		flipColorProgress(id, currentSelectedColorIdx);
+	}
+}
+
+function flipColorProgress(id, colorIdx) {
+	var queue = new Array();
+	queue.push(id);
+	
+	while(queue.length > 0) {
+		var currentTile = queue.shift();
+		var position = reduceToken(currentTile);
+		drawUI(position.x, position.y, colorIdx);
 		
+		// TODO Add surrounding same color tiles
 	}
 }
 
