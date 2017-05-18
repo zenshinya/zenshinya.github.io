@@ -116,38 +116,32 @@ function flipColorProgress(id, originalColorIdx, colorIdx) {
 		playground[currentTile] = colorIdx;
 		
 		// Check top
-		if (position.y - 1 >= 0 &&
-				queue.indexOf(getToken(position.x, position.y - 1)) < 0 &&
-				alreadyAdded.indexOf(getToken(position.x, position.y - 1)) < 0 &&
-				playground[getToken(position.x, position.y - 1)] == originalColorIdx ) {
+		if (position.y - 1 >= 0 && isSameBlob(position.x, position.y - 1, originalColorIdx, queue, alreadyAdded)) {
 			queue.push(getToken(position.x, position.y - 1));
 		}
 		
 		
 		// Check bottom
-		if (position.y + 1 < maxHeight &&
-				queue.indexOf(getToken(position.x, position.y + 1)) < 0 &&
-				alreadyAdded.indexOf(getToken(position.x, position.y + 1)) < 0 &&
-				playground[getToken(position.x, position.y + 1)] == originalColorIdx) {
+		if (position.y + 1 < maxHeight && isSameBlob(position.x, position.y + 1, originalColorIdx, queue, alreadyAdded)) {
 			queue.push(getToken(position.x, position.y + 1));
 		}
 		
 		// Check left
-		if (position.x - 1 >= 0 &&
-				queue.indexOf(getToken(position.x - 1, position.y)) < 0 &&
-				alreadyAdded.indexOf(getToken(position.x - 1, position.y)) < 0 &&
-				playground[getToken(position.x - 1, position.y)] == originalColorIdx) {
+		if (position.x - 1 >= 0 && isSameBlob(position.x - 1, position.y, originalColorIdx, queue, alreadyAdded)) {
 			queue.push(getToken(position.x - 1, position.y));
 		}
 		
 		// Check right
-		if (position.x + 1 < maxWidth &&
-				queue.indexOf(getToken(position.x + 1, position.y)) < 0 &&
-				alreadyAdded.indexOf(getToken(position.x + 1, position.y)) < 0 &&
-				playground[getToken(position.x + 1, position.y)] == originalColorIdx) {
+		if (position.x + 1 < maxWidth && isSameBlob(position.x + 1, position.y, originalColorIdx, queue, alreadyAdded)) {
 			queue.push(getToken(position.x + 1, position.y));
 		}
 	}
+}
+
+function isSameBlob(x, y, colorIdx, queue, alreadyAdded) {
+	return queue.indexOf(getToken(x, y)) < 0 &&
+			alreadyAdded.indexOf(getToken(x, y)) < 0 &&
+			playground[getToken(x, y)] == colorIdx;
 }
 
 function selectColor(color) {

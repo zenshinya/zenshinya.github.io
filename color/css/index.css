@@ -1,0 +1,18 @@
+.playground {
+	position: relative;
+	margin-top: 40px;
+}
+
+.tile {
+	position: absolute;
+	transition: background-color 0.5s linear;
+}
+
+.toolbox {
+	display: flex;
+	flex-direction: row;
+}
+
+.tool {
+	margin: 10px;
+}
