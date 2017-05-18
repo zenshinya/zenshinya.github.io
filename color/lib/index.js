@@ -15,6 +15,8 @@ var playground = {};
 var maxWidth = 20;
 var maxHeight = 20;
 
+var maxCount = 0;
+
 function initialize() {
 	// Initialise playground
 	for (var y = 0; y < maxHeight; y++) {
@@ -26,9 +28,13 @@ function initialize() {
 	
 	// Create sample
 	createSample(playground);
+	drawCount();
 }
 
 function createSample(playground) {
+	// Set count
+	maxCount = 3;
+	
 	// Create first red box
 	for (var y = 2; y < 18; y++) {
 		for (var x = 8; x < 12; x++) {
@@ -62,6 +68,15 @@ function createSample(playground) {
 	}
 }
 
+function drawCount() {
+	$('#currentCount').text(maxCount);
+}
+
+function reduceCount() {
+	maxCount--;
+	drawCount();
+}
+
 function drawUI(x, y, color) {
 	var tileWidth = 30;
 	var tileHeight = 30;
@@ -93,9 +108,14 @@ function reduceToken(id) {
 }
 
 function onClickTile(id) {
+	if (maxCount <= 0) {
+		return;
+	}
+	
 	// If different color
 	if (playground[id] != currentSelectedColorIdx) {
 		flipColorProgress(id, playground[id], currentSelectedColorIdx);
+		reduceCount();
 	}
 }
 
@@ -146,4 +166,8 @@ function isSameBlob(x, y, colorIdx, queue, alreadyAdded) {
 
 function selectColor(color) {
 	currentSelectedColorIdx = color;
+}
+
+function resetGame() {
+	initialize();
 }
