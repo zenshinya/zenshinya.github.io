@@ -28,10 +28,35 @@ function initialize() {
 }
 
 function createSample(playground) {
-	for (var y = 5; y < 15; y++) {
+	// Create first red box
+	for (var y = 2; y < 18; y++) {
 		for (var x = 8; x < 12; x++) {
 			playground[getToken(x, y)] = 1;
 			drawUI(x, y, 1);
+		}
+	}
+	
+	// Create second green box
+	for (var y = 4; y < 6; y++) {
+		for (var x = 1; x < 15; x++) {
+			playground[getToken(x, y)] = 2;
+			drawUI(x, y, 2);
+		}
+	}
+	
+	// Create third green box
+	for (var y = 12; y < 17; y++) {
+		for (var x = 4; x < 19; x++) {
+			playground[getToken(x, y)] = 2;
+			drawUI(x, y, 2);
+		}
+	}
+	
+	// Create last blue box
+	for (var y = 1; y < 18; y++) {
+		for (var x = 2; x < 3; x++) {
+			playground[getToken(x, y)] = 3;
+			drawUI(x, y, 3);
 		}
 	}
 }
@@ -40,14 +65,14 @@ function drawUI(x, y, color) {
 	var tileWidth = 30;
 	var tileHeight = 30;
 	
-	// If tile already exist, remove tile
+	// If tile already exist, change tile color
 	if ($(`#${getToken(x, y)}`).length) {
-		$(`#${getToken(x, y)}`).remove();
+		$(`#${getToken(x, y)}`).css('background-color', colorScheme[color]);
+	} else {
+		getPlaygroundDom().append(
+			`<div id="${getToken(x, y)}" class="tile" style="background-color:${colorScheme[color]}; left:${x * tileWidth}px; top:${y * tileHeight}px; width:${tileWidth}px; height:${tileHeight}px;"></div>`
+		);
 	}
-	
-	getPlaygroundDom().append(
-		`<div id="${getToken(x, y)}" class="tile" style="background-color:${colorScheme[color]}; left:${x * tileWidth}px; top:${y * tileHeight}px; width:${tileWidth}px; height:${tileHeight}px;"></div>`
-	);
 }
 
 function getPlaygroundDom() {
