@@ -13,18 +13,13 @@ function initialize() {
 	var width = 20;
 	var height = 20;
 	
-	var tileWidth = 30;
-	var tileHeight = 30;
-	
 	var playground = {};
 	
 	// Initialise playground
 	for (var y = 0; y < height; y++) {
 		for (var x = 0; x < width; x++) {
 			playground[getToken(x, y)] = 0;
-			getPlaygroundDom().append(
-				`<div id=${getToken(x, y)}" class="tile" style="background-color:${colorScheme[0]}; left:${x * tileWidth}px; top:${y * tileHeight}px; width:${tileWidth}px; height:${tileHeight}px;"></div>`
-			);
+			drawUI(x, y, 0);
 		}
 	}
 	
@@ -33,9 +28,26 @@ function initialize() {
 }
 
 function createSample(playground) {
+	for (var y = 5; y < 15; y++) {
+		for (var x = 8; x < 12; x++) {
+			playground[getToken(x, y)] = 1;
+			drawUI(x, y, 1);
+		}
+	}
 }
 
-function drawUI(playground) {
+function drawUI(x, y, color) {
+	var tileWidth = 30;
+	var tileHeight = 30;
+	
+	// If tile already exist, remove tile
+	if ($(`#${getToken(x, y)}`).length) {
+		$(`#${getToken(x, y)}`).remove();
+	}
+	
+	getPlaygroundDom().append(
+		`<div id="${getToken(x, y)}" class="tile" style="background-color:${colorScheme[color]}; left:${x * tileWidth}px; top:${y * tileHeight}px; width:${tileWidth}px; height:${tileHeight}px;"></div>`
+	);
 }
 
 function getPlaygroundDom() {
@@ -43,5 +55,5 @@ function getPlaygroundDom() {
 }
 
 function getToken(x, y) {
-	return x + ':' + y;
+	return `tile-${x}-${y}`;
 }
