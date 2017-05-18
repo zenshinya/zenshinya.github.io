@@ -12,14 +12,13 @@ var colorScheme = {
 var currentSelectedColorIdx = 0;
 
 var playground = {};
+var maxWidth = 20;
+var maxHeight = 20;
 
 function initialize() {
-	var width = 20;
-	var height = 20;
-	
 	// Initialise playground
-	for (var y = 0; y < height; y++) {
-		for (var x = 0; x < width; x++) {
+	for (var y = 0; y < maxHeight; y++) {
+		for (var x = 0; x < maxWidth; x++) {
 			playground[getToken(x, y)] = 0;
 			drawUI(x, y, 0);
 		}
@@ -88,28 +87,66 @@ function getToken(x, y) {
 function reduceToken(id) {
 	var position = id.split(/^tile-(\d{1,2})-(\d{1,2})$/);
 	return {
-		x: position[1],
-		y: position[2]
+		x: parseInt(position[1], 10),
+		y: parseInt(position[2], 10)
 	};
 }
 
 function onClickTile(id) {
 	// If different color
 	if (playground[id] != currentSelectedColorIdx) {
-		flipColorProgress(id, currentSelectedColorIdx);
+		flipColorProgress(id, playground[id], currentSelectedColorIdx);
 	}
 }
 
-function flipColorProgress(id, colorIdx) {
+function flipColorProgress(id, originalColorIdx, colorIdx) {
 	var queue = new Array();
+	var alreadyAdded = new Array();
+	
 	queue.push(id);
+	
+	var count = 0;
 	
 	while(queue.length > 0) {
 		var currentTile = queue.shift();
+		alreadyAdded.push(currentTile);
+		
 		var position = reduceToken(currentTile);
 		drawUI(position.x, position.y, colorIdx);
+		playground[currentTile] = colorIdx;
 		
-		// TODO Add surrounding same color tiles
+		// Check top
+		if (position.y - 1 >= 0 &&
+				queue.indexOf(getToken(position.x, position.y - 1)) < 0 &&
+				alreadyAdded.indexOf(getToken(position.x, position.y - 1)) < 0 &&
+				playground[getToken(position.x, position.y - 1)] == originalColorIdx ) {
+			queue.push(getToken(position.x, position.y - 1));
+		}
+		
+		
+		// Check bottom
+		if (position.y + 1 < maxHeight &&
+				queue.indexOf(getToken(position.x, position.y + 1)) < 0 &&
+				alreadyAdded.indexOf(getToken(position.x, position.y + 1)) < 0 &&
+				playground[getToken(position.x, position.y + 1)] == originalColorIdx) {
+			queue.push(getToken(position.x, position.y + 1));
+		}
+		
+		// Check left
+		if (position.x - 1 >= 0 &&
+				queue.indexOf(getToken(position.x - 1, position.y)) < 0 &&
+				alreadyAdded.indexOf(getToken(position.x - 1, position.y)) < 0 &&
+				playground[getToken(position.x - 1, position.y)] == originalColorIdx) {
+			queue.push(getToken(position.x - 1, position.y));
+		}
+		
+		// Check right
+		if (position.x + 1 < maxWidth &&
+				queue.indexOf(getToken(position.x + 1, position.y)) < 0 &&
+				alreadyAdded.indexOf(getToken(position.x + 1, position.y)) < 0 &&
+				playground[getToken(position.x + 1, position.y)] == originalColorIdx) {
+			queue.push(getToken(position.x + 1, position.y));
+		}
 	}
 }
 
