@@ -16,6 +16,7 @@ var maxWidth = 20;
 var maxHeight = 20;
 
 var maxCount = 0;
+var isAnimating = false;
 
 function initialize() {
 	// Initialise playground
@@ -113,21 +114,29 @@ function onClickTile(id) {
 		return;
 	}
 	
+	if (isAnimating) {
+		return;
+	}
+	
 	// If different color
 	if (playground[id] != currentSelectedColorIdx) {
 		reduceCount();
-		flipColorProgress(id, playground[id], currentSelectedColorIdx);
+		startFlipColor(id, playground[id], currentSelectedColorIdx);
 	}
 }
 
-function flipColorProgress(id, originalColorIdx, colorIdx) {
+function startFlipColor(id, originalColorIdx, colorIdx) {
 	var queue = new Array();
+	var nextQueue = new Array();
 	var alreadyAdded = new Array();
 	
 	queue.push(id);
 	
-	var count = 0;
-	
+	isAnimating = true;
+	flipColorProgress(originalColorIdx, colorIdx, queue, nextQueue, alreadyAdded);
+}
+
+function flipColorProgress(originalColorIdx, colorIdx, queue, nextQueue, alreadyAdded) {
 	while(queue.length > 0) {
 		var currentTile = queue.shift();
 		alreadyAdded.push(currentTile);
@@ -137,33 +146,44 @@ function flipColorProgress(id, originalColorIdx, colorIdx) {
 		playground[currentTile] = colorIdx;
 		
 		// Check top
-		if (position.y - 1 >= 0 && isSameBlob(position.x, position.y - 1, originalColorIdx, queue, alreadyAdded)) {
-			queue.push(getToken(position.x, position.y - 1));
+		if (position.y - 1 >= 0 && isSameBlob(position.x, position.y - 1, originalColorIdx, queue, alreadyAdded, nextQueue)) {
+			nextQueue.push(getToken(position.x, position.y - 1));
 		}
 		
 		
 		// Check bottom
-		if (position.y + 1 < maxHeight && isSameBlob(position.x, position.y + 1, originalColorIdx, queue, alreadyAdded)) {
-			queue.push(getToken(position.x, position.y + 1));
+		if (position.y + 1 < maxHeight && isSameBlob(position.x, position.y + 1, originalColorIdx, queue, alreadyAdded, nextQueue)) {
+			nextQueue.push(getToken(position.x, position.y + 1));
 		}
 		
 		// Check left
-		if (position.x - 1 >= 0 && isSameBlob(position.x - 1, position.y, originalColorIdx, queue, alreadyAdded)) {
-			queue.push(getToken(position.x - 1, position.y));
+		if (position.x - 1 >= 0 && isSameBlob(position.x - 1, position.y, originalColorIdx, queue, alreadyAdded, nextQueue)) {
+			nextQueue.push(getToken(position.x - 1, position.y));
 		}
 		
 		// Check right
-		if (position.x + 1 < maxWidth && isSameBlob(position.x + 1, position.y, originalColorIdx, queue, alreadyAdded)) {
-			queue.push(getToken(position.x + 1, position.y));
+		if (position.x + 1 < maxWidth && isSameBlob(position.x + 1, position.y, originalColorIdx, queue, alreadyAdded, nextQueue)) {
+			nextQueue.push(getToken(position.x + 1, position.y));
 		}
 	}
 	
-	checkWinCondition();
+	if (nextQueue.length > 0) {
+		queue = nextQueue;
+		nextQueue = new Array();
+		setTimeout(function () {
+			flipColorProgress(originalColorIdx, colorIdx, queue, nextQueue, alreadyAdded);
+		}, 50);
+	} else {
+		// Check for win condition
+		checkWinCondition();
+		isAnimating = false;
+	}
 }
 
-function isSameBlob(x, y, colorIdx, queue, alreadyAdded) {
+function isSameBlob(x, y, colorIdx, queue, alreadyAdded, nextQueue) {
 	return queue.indexOf(getToken(x, y)) < 0 &&
 			alreadyAdded.indexOf(getToken(x, y)) < 0 &&
+			nextQueue.indexOf(getToken(x, y)) < 0 &&
 			playground[getToken(x, y)] == colorIdx;
 }
 
