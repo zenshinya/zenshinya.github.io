@@ -5,5 +5,7 @@
   "LABEL_HW_1313": "1313 - 1A",
   "LABEL_HW_134": "134",
   "LABEL_HW_1322": "1322 - 1A*",
-  "LABEL_HW_1223": "1223 - 1A* Custom"
+  "LABEL_HW_1223": "1223 - 1A* Custom",
+  "LABEL_CURRENT_MODE": "Current Mode:",
+  "LABEL_CANVAS_ERROR": "Your browser does not support the HTML5 canvas tag"
 }

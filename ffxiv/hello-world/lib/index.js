@@ -5,25 +5,46 @@ const validLanguages = {
 
 const modes = {
   // 1313
-  "hw1-1313": 0,
-  "hw2-1313": 1,
+  "HW1-1313": "HW1-1313",
+  "HW2-1313": "HW2-1313",
   // 134
-  "hw1-134": 2,
-  "hw2-134": 3,
+  "HW1-134": "HW1-134",
+  "HW2-134": "HW2-134",
   // 1322
-  "hw1-1322": 4,
-  "hw2-1322": 5,
+  "HW1-1322": "HW1-1322",
+  "HW2-1322": "HW2-1322",
   // 1223
-  "hw1-1223": 6,
-  "hw2-1223": 7
+  "HW1-1223": "HW1-1223",
+  "HW2-1223": "HW2-1223"
 };
 
 let currentLanguage = validLanguages.en;
-let currentMode = "hw1-1313";
+let currentMode = Object.keys(modes)[0];
 
 $(document).ready(() => {
   setLocalisation(getLanguage());
+  getMode();
 });
+
+const getMode = () => {
+  const query = location.search.split("mode=")[1];
+  if (!!query) {
+    const mode = query.split("&")[0];
+    if (!!mode && Object.keys(modes).indexOf(mode) >= 0) {
+      currentMode = mode;
+    }
+  }
+  renderHWTypeDisplay();
+};
+
+const renderHWTypeDisplay = () => {
+  const labels = currentMode.split("-");
+  $("#current-mode-hw-display").attr("data-localize", `LABEL_${labels[0]}`);
+  $("#current-mode-type-display").attr(
+    "data-localize",
+    `LABEL_HW_${labels[1]}`
+  );
+};
 
 const chooseLanguage = language => {
   if (Object.keys(validLanguages).indexOf(language) >= 0) {
@@ -58,7 +79,7 @@ const getCookie = key => {
   const decodedCookie = decodeURIComponent(document.cookie);
   const ca = decodedCookie.split(";");
   for (let i = 0; i < ca.length; i++) {
-    const c = ca[i];
+    let c = ca[i];
     while (c.charAt(0) == " ") {
       c = c.substring(1);
     }

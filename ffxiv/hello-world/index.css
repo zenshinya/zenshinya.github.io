@@ -44,6 +44,17 @@
   text-decoration: underline;
 }
 
+.mode-bar {
+  background-color: black;
+  color: white;
+  margin: 0;
+  padding: 4px 8px;
+}
+
+.mode-bar > span {
+  margin-right: 8px;
+}
+
 .hw-canvas-container {
   margin: 0 15px;
   background-color: black;

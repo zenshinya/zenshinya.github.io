@@ -17,20 +17,19 @@
 <body>
 	<div class="container page-container">
 		<div class="header text-center">
-			<h1 data-localize="LABEL_HELLO_WORLD">Hello World</h1>
+			<h1 data-localize="LABEL_HELLO_WORLD"></h1>
 		</div>
 		<div class="navigation row">
 			<div class="col menu-bar">
 				<div class="row">
 					<div class="dropdown menu-dropdown">
 						<button class="btn dropdown-toggle" type="button" data-toggle="dropdown" data-localize="LABEL_HW1">
-							Hello World 1
 						</button>
 						<div class="dropdown-menu">
-							<span class="dropdown-item menu-item" data-localize="LABEL_HW_1313">1313 - 1A</span>
-							<span class="dropdown-item menu-item" data-localize="LABEL_HW_134">134</span>
-							<span class="dropdown-item menu-item" data-localize="LABEL_HW_132">1322 - 1A*</span>
-							<span class="dropdown-item menu-item" data-localize="LABEL_HW_1223">1223 - 1A* Custom</span>
+							<a class="dropdown-item menu-item" data-localize="LABEL_HW_1313" href="?mode=HW1-1313"></a>
+							<a class="dropdown-item menu-item" data-localize="LABEL_HW_134" href="?mode=HW1-134"></a>
+							<a class="dropdown-item menu-item" data-localize="LABEL_HW_1322" href="?mode=HW1-1322"></a>
+							<a class="dropdown-item menu-item" data-localize="LABEL_HW_1223" href="?mode=HW1-1223"></a>
 						</div>
 					</div>
 					<div class="dropdown menu-dropdown">
@@ -38,10 +37,10 @@
 							Hello World 2
 						</button>
 						<div class="dropdown-menu">
-							<span class="dropdown-item menu-item" data-localize="LABEL_HW_1313">1313 - 1A</span>
-							<span class="dropdown-item menu-item" data-localize="LABEL_HW_134">134</span>
-							<span class="dropdown-item menu-item" data-localize="LABEL_HW_132">1322 - 1A*</span>
-							<span class="dropdown-item menu-item" data-localize="LABEL_HW_1223">1223 - 1A* Custom</span>
+							<a class="dropdown-item menu-item" data-localize="LABEL_HW_1313" href="?mode=HW2-1313"></a>
+							<a class="dropdown-item menu-item" data-localize="LABEL_HW_134" href="?mode=HW2-134"></a>
+							<a class="dropdown-item menu-item" data-localize="LABEL_HW_1322" href="?mode=HW2-1322"></a>
+							<a class="dropdown-item menu-item" data-localize="LABEL_HW_1223" href="?mode=HW2-1223"></a>
 						</div>
 					</div>
 				</div>
@@ -55,10 +54,15 @@
 				</span>
 			</div>
 		</div>
+		<div class="row mode-bar">
+			<span data-localize="LABEL_CURRENT_MODE"></span>
+			<span id="current-mode-hw-display" data-localize="LABEL_HW1"></span>
+			<span>></span>
+			<span id="current-mode-type-display" data-localize="LABEL_HW_1313"></span>
+		</div>
 		<div class="row">
 			<div class="hw-canvas-container col">
-				<canvas id="hello-world" class="hw-canvas" width="600" height="600">
-					Your browser does not support the HTML5 canvas tag.
+				<canvas id="hello-world" class="hw-canvas" width="600" height="600" data-localize="LABEL_CANVAS_ERROR">
 				</canvas>
 			</div>
 		</div>
