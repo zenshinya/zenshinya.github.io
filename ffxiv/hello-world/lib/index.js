@@ -3,7 +3,23 @@ const validLanguages = {
   jp: "jp"
 };
 
+const modes = {
+  // 1313
+  "hw1-1313": 0,
+  "hw2-1313": 1,
+  // 134
+  "hw1-134": 2,
+  "hw2-134": 3,
+  // 1322
+  "hw1-1322": 4,
+  "hw2-1322": 5,
+  // 1223
+  "hw1-1223": 6,
+  "hw2-1223": 7
+};
+
 let currentLanguage = validLanguages.en;
+let currentMode = "hw1-1313";
 
 $(document).ready(() => {
   setLocalisation(getLanguage());

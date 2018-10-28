@@ -19,7 +19,33 @@
 		<div class="header text-center">
 			<h1 data-localize="LABEL_HELLO_WORLD">Hello World</h1>
 		</div>
-		<div class="row">
+		<div class="navigation row">
+			<div class="col menu-bar">
+				<div class="row">
+					<div class="dropdown menu-dropdown">
+						<button class="btn dropdown-toggle" type="button" data-toggle="dropdown" data-localize="LABEL_HW1">
+							Hello World 1
+						</button>
+						<div class="dropdown-menu">
+							<span class="dropdown-item menu-item" data-localize="LABEL_HW_1313">1313 - 1A</span>
+							<span class="dropdown-item menu-item" data-localize="LABEL_HW_134">134</span>
+							<span class="dropdown-item menu-item" data-localize="LABEL_HW_132">1322 - 1A*</span>
+							<span class="dropdown-item menu-item" data-localize="LABEL_HW_1223">1223 - 1A* Custom</span>
+						</div>
+					</div>
+					<div class="dropdown menu-dropdown">
+						<button class="btn dropdown-toggle" type="button" data-toggle="dropdown" data-localize="LABEL_HW2">
+							Hello World 2
+						</button>
+						<div class="dropdown-menu">
+							<span class="dropdown-item menu-item" data-localize="LABEL_HW_1313">1313 - 1A</span>
+							<span class="dropdown-item menu-item" data-localize="LABEL_HW_134">134</span>
+							<span class="dropdown-item menu-item" data-localize="LABEL_HW_132">1322 - 1A*</span>
+							<span class="dropdown-item menu-item" data-localize="LABEL_HW_1223">1223 - 1A* Custom</span>
+						</div>
+					</div>
+				</div>
+			</div>
 			<div class="col language-bar">
 				<span onclick="chooseLanguage('en')">
 					English
@@ -30,6 +56,11 @@
 			</div>
 		</div>
 		<div class="row">
+			<div class="hw-canvas-container col">
+				<canvas id="hello-world" class="hw-canvas" width="600" height="600">
+					Your browser does not support the HTML5 canvas tag.
+				</canvas>
+			</div>
 		</div>
 	</div>
 </body>

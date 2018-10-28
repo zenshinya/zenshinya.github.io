@@ -10,14 +10,30 @@
   background-size: cover;
 }
 
-.language-bar {
+.navigation {
+  margin: 0;
   background-color: #eeeeee;
-  margin: 0 15px;
   padding: 8px 16px;
+}
+
+.menu-bar {
+  text-align: left;
+}
+
+.menu-dropdown {
+  margin-right: 20px;
+}
+
+.menu-item {
+  cursor: pointer;
+}
+
+.language-bar {
   text-align: right;
 }
 
 .language-bar > span {
+  line-height: 38px;
   margin-left: 12px;
   cursor: pointer;
   transition: 0.3s linear color;
@@ -26,4 +42,14 @@
 .language-bar > span:hover {
   color: blue;
   text-decoration: underline;
+}
+
+.hw-canvas-container {
+  margin: 0 15px;
+  background-color: black;
+}
+
+.hw-canvas {
+  display: block;
+  margin: 0 auto;
 }
