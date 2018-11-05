@@ -1,0 +1,45 @@
+.page-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 80px;
+}
+
+.arena {
+  border: 2px solid black;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  position: relative;
+  transform: rotate(-60deg);
+}
+
+.arm-0 {
+  border: 5px solid orange;
+}
+
+.arm-1 {
+  border: 5px solid blue;
+}
+
+.line {
+  border: 2px solid orange;
+  background-color: orange;
+  opacity: 0.4;
+}
+
+.safe-spot {
+  color: black;
+  font-weight: 600;
+  cursor: pointer;
+  transform: rotate(60deg);
+}
+
+.safe-spot:hover {
+  background-color: green;
+  opacity: 0.3;
+}
+
+.restart {
+  margin-top: 40px;
+}
