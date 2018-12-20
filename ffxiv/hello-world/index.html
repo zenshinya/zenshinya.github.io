@@ -1,72 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Hello World | Alphascape Savage | FFXIV</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script>document.write("<script type='text/javascript' src='lib/index.js?v=" + Date.now() + "'><\/script>");</script>
+    <script>document.write("<script type='text/javascript' src='lib/arena.js?v=" + Date.now() + "'><\/script>");</script>
+    <script>document.write("<script type='text/javascript' src='lib/user.js?v=" + Date.now() + "'><\/script>");</script>
+  </head>
 
-<head>
-	<title>Hello World | Alphascape Savage | FFXIV</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="index.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-	<script src="lib/index.js"></script>
-	<script src="lib/jquery.localize.min.js"></script>
-</head>
-
-<body>
-	<div class="container page-container">
-		<div class="header text-center">
-			<h1 data-localize="LABEL_HELLO_WORLD"></h1>
-		</div>
-		<div class="navigation row">
-			<div class="col menu-bar">
-				<div class="row">
-					<div class="dropdown menu-dropdown">
-						<button class="btn dropdown-toggle" type="button" data-toggle="dropdown" data-localize="LABEL_HW1">
-						</button>
-						<div class="dropdown-menu">
-							<a class="dropdown-item menu-item" data-localize="LABEL_HW_1313" href="?mode=HW1-1313"></a>
-							<a class="dropdown-item menu-item" data-localize="LABEL_HW_134" href="?mode=HW1-134"></a>
-							<a class="dropdown-item menu-item" data-localize="LABEL_HW_1322" href="?mode=HW1-1322"></a>
-							<a class="dropdown-item menu-item" data-localize="LABEL_HW_1223" href="?mode=HW1-1223"></a>
-						</div>
-					</div>
-					<div class="dropdown menu-dropdown">
-						<button class="btn dropdown-toggle" type="button" data-toggle="dropdown" data-localize="LABEL_HW2">
-							Hello World 2
-						</button>
-						<div class="dropdown-menu">
-							<a class="dropdown-item menu-item" data-localize="LABEL_HW_1313" href="?mode=HW2-1313"></a>
-							<a class="dropdown-item menu-item" data-localize="LABEL_HW_134" href="?mode=HW2-134"></a>
-							<a class="dropdown-item menu-item" data-localize="LABEL_HW_1322" href="?mode=HW2-1322"></a>
-							<a class="dropdown-item menu-item" data-localize="LABEL_HW_1223" href="?mode=HW2-1223"></a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col language-bar">
-				<span onclick="chooseLanguage('en')">
-					English
-				</span>
-				<span onclick="chooseLanguage('jp')">
-					日本語
-				</span>
-			</div>
-		</div>
-		<div class="row mode-bar">
-			<span data-localize="LABEL_CURRENT_MODE"></span>
-			<span id="current-mode-hw-display" data-localize="LABEL_HW1"></span>
-			<span>></span>
-			<span id="current-mode-type-display" data-localize="LABEL_HW_1313"></span>
-		</div>
-		<div class="row">
-			<div class="hw-canvas-container col">
-				<canvas id="hello-world" class="hw-canvas" width="600" height="600" data-localize="LABEL_CANVAS_ERROR">
-				</canvas>
-			</div>
-		</div>
-	</div>
-</body>
-
+  <body>
+    <div class="container page-container">
+      <div class="header text-center"><h1>Hello World!</h1></div>
+      <div class="hw-game">
+        <div class="hw-canvas-container">
+          <canvas id="hello-world" class="hw-canvas" width="700" height="700">
+          </canvas>
+        </div>
+        <div id="step-1" class="selection-container">
+          <h1>Choose the mode:</h1>
+          <div class="mode-selection-button" onclick="onClickChooseMode(1)">
+            Hello World #1 (134)
+          </div>
+          <div class="mode-selection-button" onclick="onClickChooseMode(2)">
+            Hello World #2 (134)
+          </div>
+        </div>
+        <div id="step-2" class="selection-container">
+          <h1>Pick your role:</h1>
+          <div class="selection-bar">
+            <img
+              src="assets/icon-tank.png"
+              onclick="onClickChooseRole('TANK')"
+            />
+            <img
+              src="assets/icon-healer.png"
+              onclick="onClickChooseRole('HEALER')"
+            />
+            <img src="assets/icon-dps.png" onclick="onClickChooseRole('DPS')" />
+          </div>
+          <div class="back-button" onclick="setPreviousStep()">
+            < Back to mode selection
+          </div>
+        </div>
+        <div id="step-3" class="selection-container">
+          <h1>Pick mechanics to practice:</h1>
+          <div id="mechanics-container" class="selection-bar">
+          </div>
+          <div class="back-button" onclick="setPreviousStep()">
+            < Back to mode selection
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display: none;">
+      <img id="boss-circle" src="assets/boss-circle.png" />
+      <img id="TANK-image" src="assets/icon-tank.png" />
+      <img id="HEALER-image" src="assets/icon-healer.png" />
+      <img id="DPS-image" src="assets/icon-dps.png" />
+      <img id="debuff-COB" src="assets/debuff-cob.png" />
+      <img id="debuff-LD" src="assets/debuff-ld.png" />
+      <img id="debuff-CSB8" src="assets/debuff-csb.png" />
+      <img id="debuff-CSB13" src="assets/debuff-csb.png" />
+      <img id="debuff-NONE" src="assets/debuff-none.png" />
+      <img id="debuff-OD" src="assets/debuff-od.png" />
+      <img id="debuff-SD" src="assets/debuff-sd.png" />
+      <img id="debuff-CLD" src="assets/debuff-cld.png" />
+      <img id="debuff-CUB" src="assets/debuff-cub.png" />
+      <img id="debuff-UD" src="assets/debuff-ud.png" />
+    </div>
+  </body>
 </html>

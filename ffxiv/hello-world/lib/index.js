@@ -1,73 +1,145 @@
-const validLanguages = {
-  en: "en",
-  jp: "jp"
+const ROLES = {
+  TANK: "TANK",
+  HEALER: "HEALER",
+  DPS: "DPS"
 };
 
-const modes = {
-  // 1313
-  "HW1-1313": "HW1-1313",
-  "HW2-1313": "HW2-1313",
-  // 134
-  "HW1-134": "HW1-134",
-  "HW2-134": "HW2-134",
-  // 1322
-  "HW1-1322": "HW1-1322",
-  "HW2-1322": "HW2-1322",
-  // 1223
-  "HW1-1223": "HW1-1223",
-  "HW2-1223": "HW2-1223"
+const MECHANICS = {
+  COB: "COB",
+  LD: "LD",
+  CSB8: "CSB8",
+  CSB13: "CSB13",
+  NONE: "NONE",
+
+  OD: "OD",
+  SD: "SD",
+
+  CLD: "CLD",
+  CUB: "CUB",
+  UD: "UD"
 };
 
-let currentLanguage = validLanguages.en;
-let currentMode = Object.keys(modes)[0];
+const TIMINGS = {
+  COB: 8,
+  LD: 10,
+  CSB8: 8,
+  CSB13: 12,
+
+  OD: 30,
+  SD: 30,
+
+  CLD: 8,
+  CUB: 15,
+  UD: 30
+};
+
+const ICONS = {
+  COB: "cob",
+  LD: "ld",
+  CSB8: "csb",
+  CSB13: "csb",
+  NONE: "none",
+
+  OD: "od",
+  SD: "sd",
+
+  CUB: "cub",
+  UD: "ud"
+};
+
+const mechanics = {
+  [ROLES.TANK]: [MECHANICS.COB, MECHANICS.LD],
+  [ROLES.HEALER]: [MECHANICS.LD, MECHANICS.NONE],
+  [ROLES.DPS]: [MECHANICS.CSB8, MECHANICS.CSB13, MECHANICS.LD, MECHANICS.NONE]
+};
+
+// Initialise
+let currentStep = 1;
+let chosenMode = 1;
+let chosenRole = ROLES.TANK;
+let chosenMechanics = MECHANICS.COB;
+let chosenUserDataIndex = -1;
 
 $(document).ready(() => {
-  setLocalisation(getLanguage());
-  getMode();
+  // const lang = getCookie("language");
+  // setCookie("language", currentLanguage);
+
+  $(`#step-${currentStep}`).css("display", "flex");
 });
 
-const getMode = () => {
-  const query = location.search.split("mode=")[1];
-  if (!!query) {
-    const mode = query.split("&")[0];
-    if (!!mode && Object.keys(modes).indexOf(mode) >= 0) {
-      currentMode = mode;
-    }
+setNextStep = () => {
+  setStep(1);
+};
+
+setPreviousStep = () => {
+  setStep(-1);
+};
+
+setStep = increment => {
+  $(`#step-${currentStep}`).css("display", "none");
+  currentStep += increment;
+  $(`#step-${currentStep}`).css("display", "flex");
+};
+
+onClickChooseMode = mode => {
+  chosenMode = mode;
+  setNextStep();
+};
+
+onClickChooseRole = role => {
+  chosenRole = ROLES[role];
+  generateMechanicButtonsForRole(role);
+  setNextStep();
+};
+
+generateMechanicButtonsForRole = role => {
+  const buttons = mechanics[ROLES[role]].map(m => {
+    return generateOneMechanicButton(m);
+  });
+  // Add random
+  buttons.unshift(generateOneMechanicButton("random", true));
+  $("#mechanics-container").html(buttons);
+};
+
+getRandomMechanic = () => {
+  const m = mechanics[chosenRole];
+  return m[Math.floor(Math.random() * m.length)];
+};
+
+generateMechanicHint = (name, isRandom) => {
+  if (isRandom) {
+    return "Random";
   }
-  renderHWTypeDisplay();
-};
 
-const renderHWTypeDisplay = () => {
-  const labels = currentMode.split("-");
-  $("#current-mode-hw-display").attr("data-localize", `LABEL_${labels[0]}`);
-  $("#current-mode-type-display").attr(
-    "data-localize",
-    `LABEL_HW_${labels[1]}`
-  );
-};
+  const timing = TIMINGS[name];
+  // If has timing
+  if (timing) {
+    return `${TIMINGS[name]}s`;
+  }
 
-const chooseLanguage = language => {
-  if (Object.keys(validLanguages).indexOf(language) >= 0) {
-    setCookie("language", language);
-    setLocalisation(language);
+  if (name === MECHANICS.NONE) {
+    return "No debuff";
   }
 };
 
-const setLocalisation = language => {
-  const opts = { language, pathPrefix: "texts" };
-  $("[data-localize]").localize("labels", opts);
+generateOneMechanicButton = (name, isRandom) => {
+  return `<div class="mechanic-button"><img
+  class="debuff-selection-button"
+  src="assets/debuff-${isRandom ? name : ICONS[MECHANICS[name]]}.png"
+  onclick="onClickChooseMechanics('${isRandom ? getRandomMechanic() : name}')"
+/><span>${generateMechanicHint(name, isRandom)}</span></div>`;
 };
 
-const getLanguage = () => {
-  const lang = getCookie("language");
-  // If language is saved in cookies, return language
-  if (!!lang && Object.keys(validLanguages).indexOf(lang) >= 0) {
-    currentLanguage = lang;
-    return lang;
+onClickChooseMechanics = mechanic => {
+  chosenMechanics = mechanic;
+  chosenUserDataIndex = getUserDataIndex(chosenRole, chosenMechanics);
+
+  if (chosenUserDataIndex < 0) {
+    alert('Something went wrong, please refresh the page.')
+  } else {
+    setNextStep();
+    gameStart();
   }
-  // Return current language
-  setCookie("language", currentLanguage);
-  return currentLanguage;
 };
 
 const setCookie = (key, value) => {

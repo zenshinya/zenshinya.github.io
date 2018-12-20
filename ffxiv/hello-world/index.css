@@ -10,57 +10,86 @@
   background-size: cover;
 }
 
-.navigation {
-  margin: 0;
-  background-color: #eeeeee;
-  padding: 8px 16px;
-}
-
-.menu-bar {
-  text-align: left;
-}
-
-.menu-dropdown {
-  margin-right: 20px;
-}
-
-.menu-item {
-  cursor: pointer;
-}
-
-.language-bar {
-  text-align: right;
-}
-
-.language-bar > span {
-  line-height: 38px;
-  margin-left: 12px;
-  cursor: pointer;
-  transition: 0.3s linear color;
-}
-
-.language-bar > span:hover {
-  color: blue;
-  text-decoration: underline;
-}
-
-.mode-bar {
-  background-color: black;
-  color: white;
-  margin: 0;
-  padding: 4px 8px;
-}
-
-.mode-bar > span {
-  margin-right: 8px;
+.hw-game {
+  position: relative;
 }
 
 .hw-canvas-container {
-  margin: 0 15px;
   background-color: black;
+  display: flex;
+  justify-content: center;
 }
 
 .hw-canvas {
-  display: block;
-  margin: 0 auto;
+  background-color: #222;
+}
+
+.selection-container {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: white;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.selection-bar {
+  margin-top: 24px;
+  display: flex;
+}
+
+.selection-bar > * {
+  cursor: pointer;
+  transition: filter 0.1s linear;
+}
+
+.selection-bar > *:not(:last-child) {
+  margin-right: 12px;
+}
+
+.selection-bar > *:not(:first-child) {
+  margin-left: 12px;
+}
+
+.selection-bar > *:hover {
+  filter: brightness(150%);
+}
+
+.mode-selection-button {
+  font-size: 24px;
+  margin-top: 24px;
+  border-radius: 20px;
+  padding: 16px 24px;
+  border: 1px solid grey;
+  cursor: pointer;
+  transition: background-color 0.1s linear;
+}
+
+.back-button {
+  cursor: pointer;
+  margin-top: 24px;
+  transition: color 0.1s linear;
+}
+
+.back-button:hover {
+  color: lightseagreen;
+}
+
+.mode-selection-button:hover {
+  background-color: #333;
+}
+
+.mechanic-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.debuff-selection-button {
+  width: 64px;
 }
