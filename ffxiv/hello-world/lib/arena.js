@@ -18,7 +18,9 @@ let bossLocation;
 
 let startHW = false;
 let isMouseEventAdded = false;
-let playerMousePos = { x: 350, y: 350 };
+
+const DEFAULT_MOUSE_POS = { x: 350, y: 350 };
+let playerMousePos = DEFAULT_MOUSE_POS;
 
 let step = 1;
 let explosions = [];
@@ -27,7 +29,6 @@ let explosions = [];
 let firstPass = false;
 
 gameStart = () => {
-  console.log("game start");
   canvas = document.getElementById("hello-world");
   context = canvas.getContext("2d");
 
@@ -43,8 +44,7 @@ gameStart = () => {
     isMouseEventAdded = true;
   }
 
-  console.log(chosenRole, chosenMechanics, chosenUserDataIndex);
-
+  playerMousePos = DEFAULT_MOUSE_POS;
   startHW = false;
   overallTiming = 0;
   cTiming = 0;
@@ -585,6 +585,8 @@ gameLoop = () => {
       drawDebuff(context, overallTiming);
     }
 
+    levelChecker(canvas);
+
     overallTiming += 1;
   }
 };
@@ -600,7 +602,6 @@ gameLogic = (canvas, context, timing) => {
   // console.log(playerMousePos);
 
   if (step === 13) {
-    console.log("success!");
     cancelAnimationFrame(animationFrame);
     showSuccess();
     startHW = false;
@@ -1216,8 +1217,12 @@ gameLogic = (canvas, context, timing) => {
 
       if (
         !firstPass &&
-        Math.abs(userData[0].cPos.x - userData[0].nPos.x) <= 5 &&
-        Math.abs(userData[0].cPos.y - userData[0].nPos.y) <= 5
+        getCircleDistanceToPlayer(
+          userData[0].cPos.x,
+          userData[0].cPos.y,
+          userData[3].nPos.x,
+          userData[3].nPos.y
+        ) <= 15
       ) {
         firstPass = true;
 

@@ -85,12 +85,17 @@ showSuccess = () => {
   $(`#success-screen`).css("display", "flex");
 }
 
+showFailure = () => {
+  $(`#failure-screen`).css("display", "flex");
+}
+
 conditionReturn = () => {
   clearCanvas();
   $(`#success-screen`).css("display", "none");
   $(`#failure-screen`).css("display", "none");
   $(`#step-1`).css("display", "flex");
   currentStep = 1;
+  checkTimer = 0;
   userData = JSON.parse(JSON.stringify(INITIAL_USER_DATA));
 };
 

@@ -15,6 +15,7 @@
     <script>document.write("<script type='text/javascript' src='lib/index.js?v=" + Date.now() + "'><\/script>");</script>
     <script>document.write("<script type='text/javascript' src='lib/arena.js?v=" + Date.now() + "'><\/script>");</script>
     <script>document.write("<script type='text/javascript' src='lib/user.js?v=" + Date.now() + "'><\/script>");</script>
+    <script>document.write("<script type='text/javascript' src='lib/level-checker.js?v=" + Date.now() + "'><\/script>");</script>
   </head>
 
   <body>
@@ -65,6 +66,12 @@
         </div>
         <div id="success-screen" class="selection-container">
           <h1>Congratulations!</h1>
+          <div class="back-button" onclick="conditionReturn()">
+            < Back to mode selection
+          </div>
+        </div>
+        <div id="failure-screen" class="selection-container">
+          <h1 id="failure-message">??? What you doing over there??? FAIL!</h1>
           <div class="back-button" onclick="conditionReturn()">
             < Back to mode selection
           </div>
