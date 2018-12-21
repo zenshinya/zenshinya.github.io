@@ -32,8 +32,60 @@ levelChecker = canvas => {
   if (chosenUserDataIndex === 3) {
     checkHealer2(userX, userY, checkTimer);
   }
+  if (chosenUserDataIndex === 4) {
+    checkDps1(userX, userY, checkTimer);
+  }
 
   checkTimer += 1;
+};
+
+checkDps1 = (userX, userY, checkTimer) => {
+  // Get hit by first 8s
+  if (checkTimer === 1139) {
+    if (getCircleDistanceToPlayer(userX, userY, 445, 610) > STACK_AOE) {
+      failYou("Why you not at C2? FAIL!");
+    }
+  }
+  // 4 big explosion
+  if (checkTimer === 2731) {
+    if (getCircleDistanceToPlayer(userX, userY, 630, 240) > 50) {
+      failYou("Why you not at B? FAIL!");
+    }
+  }
+
+  if (chosenMode === 2) {
+    // Stand at C2 until go take rot
+    if (checkTimer > 1139 && checkTimer < 1561) {
+      if (getCircleDistanceToPlayer(userX, userY, 445, 610) > 50) {
+        failYou("Why you move out of C2? FAIL!");
+      }
+    }
+    // Go C take rot
+    if (checkTimer === 1680) {
+      if (getCircleDistanceToPlayer(userX, userY, 330, 670) > 70) {
+        failYou("Why you not at C? FAIL!");
+      }
+    }
+    // Move away somewhere until last stack explosion
+    if (checkTimer === 1801) {
+      if (getCircleDistanceToPlayer(userX, userY, 345, 475) > 130) {
+        failYou("Why you didnt move close to center? FAIL!");
+      }
+    }
+    // Stand at east tower
+    if (checkTimer === 2251) {
+      if (getCircleDistanceToPlayer(userX, userY, 580, 350) > 100) {
+        failYou("Why you didnt stand in EAST tower? FAIL!");
+      }
+    }
+  } else {
+    // Stand at C2 until last stack explosion
+    if (checkTimer > 1139 && checkTimer < 1801) {
+      if (getCircleDistanceToPlayer(userX, userY, 445, 610) > 50) {
+        failYou("Why you move out of C2? FAIL!");
+      }
+    }
+  }
 };
 
 checkHealer2 = (userX, userY, checkTimer) => {

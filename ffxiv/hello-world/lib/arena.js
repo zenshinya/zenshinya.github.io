@@ -599,8 +599,6 @@ const START_COUNTDOWN_TIME = 5;
 const HW_CASTING_TIME = 6;
 const STACK_AOE = 90;
 gameLogic = (canvas, context, timing) => {
-  // console.log(playerMousePos);
-
   if (step === 13) {
     cancelAnimationFrame(animationFrame);
     showSuccess();
