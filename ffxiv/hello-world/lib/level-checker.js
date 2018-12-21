@@ -29,8 +29,47 @@ levelChecker = canvas => {
   if (chosenUserDataIndex === 2) {
     checkHealer1(userX, userY, checkTimer);
   }
+  if (chosenUserDataIndex === 3) {
+    checkHealer2(userX, userY, checkTimer);
+  }
 
   checkTimer += 1;
+};
+
+checkHealer2 = (userX, userY, checkTimer) => {
+  // Get hit by first explosion
+  if (checkTimer === 1139) {
+    if (getCircleDistanceToPlayer(userX, userY, 330, 30) > ARENA_RADIUS) {
+      failYou("Why you not within explosion range? FAIL!");
+    }
+  }
+  // Move to B
+  if (checkTimer === 1561) {
+    if (getCircleDistanceToPlayer(userX, userY, 630, 240) > 50) {
+      failYou("Why you not at B? FAIL!");
+    }
+  }
+  // Stand near 1
+  if (checkTimer === 1960) {
+    if (getCircleDistanceToPlayer(userX, userY, 100, 520) > 70) {
+      failYou("Why you not beside 1? FAIL!");
+    }
+  }
+  // 4 big explosion
+  if (checkTimer === 2731) {
+    if (getCircleDistanceToPlayer(userX, userY, 150, 575) > 50) {
+      failYou("Why you not at 1? FAIL!");
+    }
+  }
+
+  if (chosenMode === 2) {
+    // HW2 take rot from tank
+    if (checkTimer === 1250) {
+      if (getCircleDistanceToPlayer(userX, userY, 465, 166) > 50) {
+        failYou("Why you didnt take rot from tank? FAIL!");
+      }
+    }
+  }
 };
 
 checkHealer1 = (userX, userY, checkTimer) => {
