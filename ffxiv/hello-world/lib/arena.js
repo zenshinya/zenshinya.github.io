@@ -450,6 +450,12 @@ drawPlayers = context => {
     chosenUserDataIndex = -1;
   }
 
+  // Dont allow movement until countdown is over
+  const tempUserIndex = chosenUserDataIndex;
+  if (step < 2) {
+    chosenUserDataIndex = -1;
+  }
+
   let userImageToDraw = null;
 
   userData.forEach((player, idx) => {
@@ -521,6 +527,8 @@ drawPlayers = context => {
     );
     context.shadowColor = "transparent";
   }
+
+  chosenUserDataIndex = tempUserIndex;
 };
 
 drawDebuff = (context, timing) => {
@@ -1109,7 +1117,7 @@ gameLogic = (canvas, context, timing) => {
       // DPS 4 to 8s
       userData[7].debuff[0] = {
         icon: MECHANICS.CSB8,
-        timing: TIMINGS[MECHANICS.CSB8]
+        timing: TIMINGS[MECHANICS.CSB8] - 1
       };
 
       // 12s explosion

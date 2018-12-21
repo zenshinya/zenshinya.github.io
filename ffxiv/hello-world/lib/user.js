@@ -45,12 +45,12 @@ const INITIAL_USER_DATA = [
       }
     ],
     cPos: {
-      x: 240,
-      y: 450
+      x: 220,
+      y: 300
     },
     nPos: {
-      x: 240,
-      y: 450
+      x: 220,
+      y: 300
     }
   },
   {
@@ -63,12 +63,12 @@ const INITIAL_USER_DATA = [
       }
     ],
     cPos: {
-      x: 420,
-      y: 450
+      x: 440,
+      y: 300
     },
     nPos: {
-      x: 420,
-      y: 450
+      x: 440,
+      y: 300
     }
   },
   {
@@ -81,12 +81,12 @@ const INITIAL_USER_DATA = [
       }
     ],
     cPos: {
-      x: 220,
-      y: 300
+      x: 240,
+      y: 450
     },
     nPos: {
-      x: 220,
-      y: 300
+      x: 240,
+      y: 450
     }
   },
   {
@@ -99,12 +99,12 @@ const INITIAL_USER_DATA = [
       }
     ],
     cPos: {
-      x: 440,
-      y: 300
+      x: 420,
+      y: 450
     },
     nPos: {
-      x: 440,
-      y: 300
+      x: 420,
+      y: 450
     }
   },
   {
