@@ -38,6 +38,10 @@
           <h1>Pick your role:</h1>
           <div class="selection-bar">
             <img
+              src="assets/icon-watch.png"
+              onclick="onClickChooseWatch()"
+            />
+            <img
               src="assets/icon-tank.png"
               onclick="onClickChooseRole('TANK')"
             />
@@ -56,6 +60,12 @@
           <div id="mechanics-container" class="selection-bar">
           </div>
           <div class="back-button" onclick="setPreviousStep()">
+            < Back to mode selection
+          </div>
+        </div>
+        <div id="success-screen" class="selection-container">
+          <h1>Congratulations!</h1>
+          <div class="back-button" onclick="conditionReturn()">
             < Back to mode selection
           </div>
         </div>

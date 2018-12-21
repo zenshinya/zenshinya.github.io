@@ -145,7 +145,8 @@ const INITIAL_USER_DATA = [
   }
 ];
 
-let userData = INITIAL_USER_DATA.slice(0);
+// let userData = INITIAL_USER_DATA.slice(0);
+let userData = JSON.parse(JSON.stringify(INITIAL_USER_DATA));
 
 getUserDataIndex = (chosenRole, chosenDebuff) => {
   for (let i = 0; i < userData.length; i += 1) {

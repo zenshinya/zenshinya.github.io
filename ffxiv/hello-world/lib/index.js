@@ -56,8 +56,8 @@ const mechanics = {
 // Initialise
 let currentStep = 1;
 let chosenMode = 1;
-let chosenRole = ROLES.TANK;
-let chosenMechanics = MECHANICS.COB;
+let chosenRole;
+let chosenMechanics;
 let chosenUserDataIndex = -1;
 
 $(document).ready(() => {
@@ -81,10 +81,30 @@ setStep = increment => {
   $(`#step-${currentStep}`).css("display", "flex");
 };
 
+showSuccess = () => {
+  $(`#success-screen`).css("display", "flex");
+}
+
+conditionReturn = () => {
+  clearCanvas();
+  $(`#success-screen`).css("display", "none");
+  $(`#failure-screen`).css("display", "none");
+  $(`#step-1`).css("display", "flex");
+  currentStep = 1;
+  userData = JSON.parse(JSON.stringify(INITIAL_USER_DATA));
+};
+
 onClickChooseMode = mode => {
   chosenMode = mode;
   setNextStep();
 };
+
+onClickChooseWatch = () => {
+  setNextStep();
+  setNextStep();
+  gameStart();
+  chosenRole = null;
+}
 
 onClickChooseRole = role => {
   chosenRole = ROLES[role];

@@ -18,7 +18,7 @@ let bossLocation;
 
 let startHW = false;
 let isMouseEventAdded = false;
-let playerMousePos = {};
+let playerMousePos = { x: 350, y: 350 };
 
 let step = 1;
 let explosions = [];
@@ -42,6 +42,8 @@ gameStart = () => {
     );
     isMouseEventAdded = true;
   }
+
+  console.log(chosenRole, chosenMechanics, chosenUserDataIndex);
 
   startHW = false;
   overallTiming = 0;
@@ -444,8 +446,9 @@ drawHWCastBar = (canvas, context, timing, HW_CASTING_TIME, givenText) => {
 
 const PLAYER_IMAGE_SIZE = 40;
 drawPlayers = context => {
-  // TODO TEMP REMOVE USER CONTROL
-  chosenUserDataIndex = -1;
+  if (Object.keys(ROLES).indexOf(chosenRole) < 0) {
+    chosenUserDataIndex = -1;
+  }
 
   let userImageToDraw = null;
 
@@ -527,13 +530,24 @@ drawDebuff = (context, timing) => {
     cTiming = second;
     updateTiming = true;
   }
+  let dbmX = 0;
   userData.forEach((player, i) => {
     let dbmY = 0;
+
+    // Has role and is not correct user data
+    if (
+      Object.keys(ROLES).indexOf(chosenRole) >= 0 &&
+      i !== chosenUserDataIndex
+    ) {
+      return;
+    }
+
     player.debuff.forEach(dbm => {
+      // Draw debuff if got timing
       if (dbm.timing) {
         const img = document.getElementById(`debuff-${dbm.icon}`);
-        const x = i * 30;
-        const y = dbmY * 60;
+        const x = dbmX * 30 + 15;
+        const y = dbmY * 60 + 15;
         context.drawImage(img, x, y);
         context.font = "12px Arial";
         context.fillStyle = "white";
@@ -545,11 +559,14 @@ drawDebuff = (context, timing) => {
         dbmY += 1;
       }
     });
+
+    dbmX += 1;
   });
 };
 
+let animationFrame;
 gameLoop = () => {
-  requestAnimFrame(gameLoop);
+  animationFrame = requestAnimFrame(gameLoop);
 
   const elapsed = Date.now() - thenTime;
 
@@ -572,6 +589,10 @@ gameLoop = () => {
   }
 };
 
+clearCanvas = () => {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+};
+
 const START_COUNTDOWN_TIME = 5;
 const HW_CASTING_TIME = 6;
 const STACK_AOE = 90;
@@ -580,6 +601,9 @@ gameLogic = (canvas, context, timing) => {
 
   if (step === 13) {
     console.log("success!");
+    cancelAnimationFrame(animationFrame);
+    showSuccess();
+    startHW = false;
   } else if (step === 12) {
     if (timing === 1) {
       userData.forEach(p => {
@@ -1320,9 +1344,13 @@ window.requestAnimFrame = (() => {
     window.webkitRequestAnimationFrame ||
     window.mozRequestAnimationFrame ||
     window.oRequestAnimationFrame ||
-    window.msRequestAnimationFrame ||
-    function(/* function */ callback, /* DOMElement */ element) {
-      window.setTimeout(callback, 1000 / 60);
-    }
+    window.msRequestAnimationFrame
+    // function(/* function */ callback, /* DOMElement */ element) {
+    //   window.setTimeout(callback, 1000 / 60);
+    // }
   );
+})();
+
+window.cancelAnimationFrame = (() => {
+  return window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 })();
