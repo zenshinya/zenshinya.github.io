@@ -38,7 +38,9 @@ levelChecker = canvas => {
   if (chosenUserDataIndex === 5) {
     checkDps2(userX, userY, checkTimer);
   }
-
+  if (chosenUserDataIndex === 6) {
+    checkDps3(userX, userY, checkTimer);
+  }
   if (chosenUserDataIndex === 7) {
     checkDps4(userX, userY, checkTimer);
   }
@@ -77,6 +79,42 @@ checkDps4 = (userX, userY, checkTimer) => {
     if (checkTimer === 2251) {
       if (getCircleDistanceToPlayer(userX, userY, 350, 350) > 100) {
         failYou("Why you didnt stand in MIDDLE tower? FAIL!");
+      }
+    }
+  }
+};
+
+checkDps3 = (userX, userY, checkTimer) => {
+  // Get hit by first explosion
+  if (checkTimer === 1139) {
+    if (getCircleDistanceToPlayer(userX, userY, 330, 30) > ARENA_RADIUS) {
+      failYou("Why you not within explosion range? FAIL!");
+    }
+  }
+  // Move to D
+  if (checkTimer === 1561) {
+    if (getCircleDistanceToPlayer(userX, userY, 70, 240) > 50) {
+      failYou("Why you not at D? FAIL!");
+    }
+  }
+  // Stand near 1
+  if (checkTimer === 1960) {
+    if (getCircleDistanceToPlayer(userX, userY, 100, 520) > 70) {
+      failYou("Why you not beside 1? FAIL!");
+    }
+  }
+  // 4 big explosion
+  if (checkTimer === 2731) {
+    if (getCircleDistanceToPlayer(userX, userY, 150, 575) > 50) {
+      failYou("Why you not at 1? FAIL!");
+    }
+  }
+
+  if (chosenMode === 2) {
+    // HW2 take rot from healer
+    if (checkTimer > 0 && checkTimer <= 1250) {
+      if (getCircleDistanceToPlayer(userX, userY, 465, 166) <= 15) {
+        failYou("Why you go take rot from healer? FAIL!");
       }
     }
   }
