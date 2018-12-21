@@ -39,7 +39,47 @@ levelChecker = canvas => {
     checkDps2(userX, userY, checkTimer);
   }
 
+  if (chosenUserDataIndex === 7) {
+    checkDps4(userX, userY, checkTimer);
+  }
+
   checkTimer += 1;
+};
+
+checkDps4 = (userX, userY, checkTimer) => {
+  // Get hit by first 13s
+  if (checkTimer == 1139) {
+    if (getCircleDistanceToPlayer(userX, userY, 245, 610) > 50) {
+      failYou("Why you not at C1? FAIL!");
+    }
+  }
+  // Move out of C1 before last stack explosion
+  if (checkTimer > 1139 && checkTimer < 1801) {
+    if (getCircleDistanceToPlayer(userX, userY, 245, 610) > 50) {
+      failYou("Why you move out of C1? FAIL!");
+    }
+  }
+  // 4 big explosion
+  if (checkTimer === 2731) {
+    if (getCircleDistanceToPlayer(userX, userY, 330, 30) > 50) {
+      failYou("Why you not at A? FAIL!");
+    }
+  }
+
+  if (chosenMode === 2) {
+    // Move away somewhere close to middle
+    if (checkTimer === 1900) {
+      if (getCircleDistanceToPlayer(userX, userY, 345, 475) > 130) {
+        failYou("Why you didnt move close to center? FAIL!");
+      }
+    }
+    // Stand at middle tower
+    if (checkTimer === 2251) {
+      if (getCircleDistanceToPlayer(userX, userY, 350, 350) > 100) {
+        failYou("Why you didnt stand in MIDDLE tower? FAIL!");
+      }
+    }
+  }
 };
 
 checkDps2 = (userX, userY, checkTimer) => {
