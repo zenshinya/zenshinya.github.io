@@ -35,8 +35,72 @@ levelChecker = canvas => {
   if (chosenUserDataIndex === 4) {
     checkDps1(userX, userY, checkTimer);
   }
+  if (chosenUserDataIndex === 5) {
+    checkDps2(userX, userY, checkTimer);
+  }
 
   checkTimer += 1;
+};
+
+checkDps2 = (userX, userY, checkTimer) => {
+  // Get hit by first 13s
+  if (checkTimer == 1139) {
+    if (getCircleDistanceToPlayer(userX, userY, 245, 610) > 50) {
+      failYou("Why you not at C1? FAIL!");
+    }
+  }
+  // 4 big explosion
+  if (checkTimer === 2731) {
+    if (getCircleDistanceToPlayer(userX, userY, 70, 240) > 50) {
+      failYou("Why you not at D? FAIL!");
+    }
+  }
+
+  if (chosenMode === 2) {
+    // Stand at C1 until go take rot
+    if (checkTimer > 1139 && checkTimer < 1561) {
+      if (getCircleDistanceToPlayer(userX, userY, 245, 610) > 50) {
+        failYou("Why you move out of C1? FAIL!");
+      }
+    }
+    // Go C take rot
+    if (checkTimer === 1680) {
+      if (getCircleDistanceToPlayer(userX, userY, 330, 670) > 70) {
+        failYou("Why you didnt go C take rot? FAIL!");
+      }
+    }
+    // Pass rot to C1
+    if (checkTimer === 1770) {
+      if (getCircleDistanceToPlayer(userX, userY, 245, 610) > 50) {
+        failYou("Why you didnt pass rot at C1? FAIL!");
+      }
+    }
+    // Stay at C1 until last stack explosion
+    if (checkTimer > 1770 && checkTimer < 1801) {
+      if (getCircleDistanceToPlayer(userX, userY, 245, 610) > 50) {
+        failYou("Why you move out of C1? FAIL!");
+      }
+    }
+    // Move away somewhere close to middle
+    if (checkTimer === 1900) {
+      if (getCircleDistanceToPlayer(userX, userY, 345, 475) > 130) {
+        failYou("Why you didnt move close to center? FAIL!");
+      }
+    }
+    // Stand at west tower
+    if (checkTimer === 2251) {
+      if (getCircleDistanceToPlayer(userX, userY, 120, 350) > 100) {
+        failYou("Why you didnt stand in WEST tower? FAIL!");
+      }
+    }
+  } else {
+    // Move out of C1
+    if (checkTimer > 1139 && checkTimer < 1801) {
+      if (getCircleDistanceToPlayer(userX, userY, 245, 610) > 50) {
+        failYou("Why you move out of C1? FAIL!");
+      }
+    }
+  }
 };
 
 checkDps1 = (userX, userY, checkTimer) => {
@@ -63,7 +127,7 @@ checkDps1 = (userX, userY, checkTimer) => {
     // Go C take rot
     if (checkTimer === 1680) {
       if (getCircleDistanceToPlayer(userX, userY, 330, 670) > 70) {
-        failYou("Why you not at C? FAIL!");
+        failYou("Why you didnt go C take rot? FAIL!");
       }
     }
     // Move away somewhere until last stack explosion
