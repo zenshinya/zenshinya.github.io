@@ -26,8 +26,32 @@ levelChecker = canvas => {
   if (chosenUserDataIndex === 1) {
     checkTank2(userX, userY, checkTimer);
   }
+  if (chosenUserDataIndex === 2) {
+    checkHealer1(userX, userY, checkTimer);
+  }
 
   checkTimer += 1;
+};
+
+checkHealer1 = (userX, userY, checkTimer) => {
+  // Get hit by first 8s
+  if (checkTimer === 1139) {
+    if (getCircleDistanceToPlayer(userX, userY, 445, 610) > STACK_AOE) {
+      failYou("Why you not at C2? FAIL!");
+    }
+  }
+  // Stay at C2
+  if (checkTimer > 1199 && checkTimer < 2251) {
+    if (getCircleDistanceToPlayer(userX, userY, 465, 630) > 50) {
+      failYou("Why you move out of C2? FAIL!");
+    }
+  }
+  // 4 big explosion
+  if (checkTimer === 2731) {
+    if (getCircleDistanceToPlayer(userX, userY, 550, 570) > 50) {
+      failYou("Why you not at 2? FAIL!");
+    }
+  }
 };
 
 checkTank2 = (userX, userY, checkTimer) => {
