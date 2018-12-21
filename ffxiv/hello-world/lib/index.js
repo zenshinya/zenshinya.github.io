@@ -59,6 +59,7 @@ let chosenMode = 1;
 let chosenRole;
 let chosenMechanics;
 let chosenUserDataIndex = -1;
+let displayArray = [];
 
 $(document).ready(() => {
   // const lang = getCookie("language");
@@ -69,10 +70,13 @@ $(document).ready(() => {
 
 setNextStep = () => {
   setStep(1);
+  displayOnBar();
 };
 
 setPreviousStep = () => {
   setStep(-1);
+  displayArray.pop();
+  displayOnBar();
 };
 
 setStep = increment => {
@@ -83,13 +87,14 @@ setStep = increment => {
 
 showSuccess = () => {
   $(`#success-screen`).css("display", "flex");
-}
+};
 
 showFailure = () => {
   $(`#failure-screen`).css("display", "flex");
-}
+};
 
 conditionReturn = () => {
+  displayArray = [];
   clearCanvas();
   $(`#success-screen`).css("display", "none");
   $(`#failure-screen`).css("display", "none");
@@ -97,23 +102,31 @@ conditionReturn = () => {
   currentStep = 1;
   checkTimer = 0;
   userData = JSON.parse(JSON.stringify(INITIAL_USER_DATA));
+  displayOnBar();
+};
+
+displayOnBar = () => {
+  $("#display-mode").text(displayArray.join(" > "));
 };
 
 onClickChooseMode = mode => {
   chosenMode = mode;
+  displayArray.push(`Hello World #${mode}`);
   setNextStep();
 };
 
 onClickChooseWatch = () => {
+  displayArray.push('SPECTATOR MODE');
   setNextStep();
   setNextStep();
   gameStart();
   chosenRole = null;
-}
+};
 
 onClickChooseRole = role => {
   chosenRole = ROLES[role];
   generateMechanicButtonsForRole(role);
+  displayArray.push(role);
   setNextStep();
 };
 
@@ -160,8 +173,9 @@ onClickChooseMechanics = mechanic => {
   chosenUserDataIndex = getUserDataIndex(chosenRole, chosenMechanics);
 
   if (chosenUserDataIndex < 0) {
-    alert('Something went wrong, please refresh the page.')
+    alert("Something went wrong, please refresh the page.");
   } else {
+    displayArray.push(mechanic);
     setNextStep();
     gameStart();
   }

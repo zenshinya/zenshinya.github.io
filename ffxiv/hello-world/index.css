@@ -10,6 +10,13 @@
   background-size: cover;
 }
 
+.hw-mode-bar{
+  background-color: black;
+  border-bottom: 1px solid grey;
+  color: white;
+  padding: 8px;
+}
+
 .hw-game {
   position: relative;
 }
