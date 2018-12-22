@@ -1,0 +1,70 @@
+.page-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 40px;
+}
+
+.arena {
+  margin-top: 80px;
+  border: 2px solid black;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.arm-0 {
+  border: 10px solid orange;
+}
+
+.arm-1 {
+  border: 10px solid blue;
+}
+
+.line {
+  border: 4px solid orange;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: fff;
+  background: linear-gradient(
+    0,
+    rgba(238, 255, 0, 0.651),
+    orange,
+    rgba(238, 255, 0, 0.651)
+  );
+}
+
+.safe-spot {
+  color: black;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.safe-spot:hover {
+  background-color: green;
+  opacity: 0.3;
+}
+
+.restart {
+  margin-top: 40px;
+}
+
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: 0px 0;
+  }
+  100% {
+    background-position: 0 500px;
+  }
+}
+
+.boss-circle {
+  position: absolute;
+  top: 140px;
+  left: 140px;
+  transform: rotate(240deg);
+}
